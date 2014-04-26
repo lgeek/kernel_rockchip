@@ -1108,7 +1108,7 @@ int rk30_lcdc_ioctl(struct rk_lcdc_device_driver * dev_drv,unsigned int cmd, uns
 			}
 			break;
 		default:
-			break;
+			return -ENOIOCTLCMD;
 	}
 
 	return ret;

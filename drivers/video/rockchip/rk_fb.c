@@ -587,10 +587,10 @@ static int rk_fb_ioctl(struct fb_info *info, unsigned int cmd,unsigned long arg)
 				dev_drv->lcdc_reg_update(dev_drv);
 			break;
 		default:
-			dev_drv->ioctl(dev_drv,cmd,arg,layer_id);
+			return dev_drv->ioctl(dev_drv,cmd,arg,layer_id);
             break;
 	}
-	
+
 	return 0;
 }
 
