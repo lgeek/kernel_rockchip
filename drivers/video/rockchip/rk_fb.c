@@ -521,9 +521,19 @@ static int rk_fb_ioctl(struct fb_info *info, unsigned int cmd,unsigned long arg)
 	void __user *argp = (void __user *)arg;
 	u32 yuv_phy[2];
 	int enable, new_layer_id;
+	struct rk_fb_mem_inf mem_info;
 	
 	switch(cmd)
 	{
+		case FBIOGET_PHYMEMINFO:
+			mem_info.yrgb = info->fix.smem_start;
+			mem_info.cbr  = info->fix.mmio_start;
+			mem_info.len  = info->fix.smem_len;
+
+			if (copy_to_user(argp, &mem_info, sizeof(mem_info)))
+				return -EFAULT;
+
+			break;
 		case RK_FBIOSET_YUV_ADDR:   //when in video mode, buff alloc by android
 			if (copy_from_user(yuv_phy, argp, 8))
 				return -EFAULT;

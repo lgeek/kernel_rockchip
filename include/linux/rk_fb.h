@@ -343,6 +343,13 @@ struct rk_fb_inf {
 	struct workqueue_struct *workqueue;
 	struct delayed_work delay_work;
 };
+
+struct rk_fb_mem_inf {
+	uint32_t yrgb;
+	uint32_t cbr;
+	uint32_t len;
+};
+
 extern int rk_fb_register(struct rk_lcdc_device_driver *dev_drv,
 	struct rk_lcdc_device_driver *def_drv,int id);
 extern int rk_fb_unregister(struct rk_lcdc_device_driver *dev_drv);
